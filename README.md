@@ -1,0 +1,1 @@
+It is a custom server for GGSIPU having a custom database containing all the relevant information about the institute . Using this database cleaverly we are providing necessary information to the ai so that it can tailor its answer accoding to the relavent infomation .
