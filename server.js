@@ -1,6 +1,18 @@
 import express from 'express';
 import fetch from 'node-fetch';
 import cors from 'cors';
+import { exec } from "child_process";
+
+exec("ollama run qwen2.5-coder:7b-instruct", (error, stdout, stderr) => {
+  if (error) {
+    console.error(`Error: ${error.message}`);
+    return;
+  }
+  if (stderr) {
+    console.error(`Standard Error: ${stderr}`);
+    return;
+  }
+});
 
 const app = express();
 
