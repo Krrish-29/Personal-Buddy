@@ -1,0 +1,49 @@
+mogodb
+ to start mondo server use : mongosh
+ to show dbs use : show dbs 
+ to create a db use : use dbname
+ to create a collection in db use : db.createCollection("collectionname")
+ to drop a collection : db.collection_name.drop()
+ to show a collection in db use : showCollections
+ to crete a collection with specific need : db.createCollection("collectionname",{cappped:true,size:1000*1024,max:100},{autoIndexId:false})
+ to delete db use : db.dropDatabase()
+ to clear screen use : cls
+ to insert 1 document use : db.students.insertOne({name:"krrish",age:"18",gpa:"9.2"})
+ to get / return  all the documents within a collection : db.students.find()
+ to insert many document use : db.students.insertMany([{},{},{}])
+ data types in db : string intgers , double , boolean , (dateobject)-> new Date() format -> 2025-04-12T10:39:15.793+00:00 
+ , null , array ["",""] , nesteddocumnets {name:"k",age:"p"}
+ to sort data in db use : db.students.find().sort({by which field}) 
+ db.students.find().sort({name:-1}) reverse sort   db.students.find().sort({name:1}) normal sort
+ to limit the documnets returned use : db.students.find().limit(1)
+ db.students.find().sort({gpa:-1}).limit(1)
+ db.students.find({query},{projection})
+ to find specific documnets using find : db.students.find({name:"k",gpa:7})
+ to get specific data from the documents :  db.students.find({name:"k"},{_id:false,name:true}) 
+ to update the db :  db.students.updateOne({filter},{update})
+ db.students.update({name:"k"},{$set:{name:"krrish"}})   
+ $set is used to name changes if the field doesnt exists it will be created and i present it will be updated
+ $unset is used to remove the fields like name db.students.update({name:"k"},{$unset:{name:""}})   
+ to update many documnets the db :  db.students.updateMany({filter},{update})
+ if some documnets do not have a filed : db.students.updateMany({money:{$exists:false}},{$set:{money:1000}})
+ deleting documents : db.students.deleteOne({})
+ deleting documents : db.students.deleteMany({})
+ using compariosn operators: db.students.find({name:{$ne:"krrish"}})  not equals to 
+ db.students.find({age:{$lt:20}})  less than 
+ db.students.find({age:{$lte:20}})  less than or equals to 
+ db.students.find({age:{$gt:20}})  greater than 
+ db.students.find({age:{$gte:20}})  greater than or equals to 
+ for a range db.students.find({age:{$gte:10,$lte:20}})
+ db.students.find({name:{$in:["krrish","k",""]}}) in comparison operator
+ db.students.find({name:{$nin:["krrish","k",""]}}) not in comparison operator
+ using logical operators in db:
+ db.students.find({$and:[{1st conditon },{2nd conditon }]}) 
+ db.students.find({$and:[{name:"krrish"},{age:{$lte:"18"}}]}) and 
+ db.students.find({$or:[{name:"krrish"},{age:{$lte:"45"}}]})  or
+ db.students.find({$nor:[{name:"krrish"},{age:{$lte:"45"}}]})  nor
+ db.students.find({age:{$not:{$gte:"18"}}})  not
+ indexes makes read faster but makes write and delete slower
+ .explain("executionStats")
+ to apply index : db.students.createIndex({name:1})
+ to get index : db.students.getIndex()
+ to remove index : db.students.dropIndex("indexname")
