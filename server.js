@@ -82,7 +82,7 @@ app.post('/process', async (req, res) => {
   }
 });
 
-const PORT = 3000;
+const PORT = 5500;
 app.listen(PORT, () => {
   console.log(`✅ Server running at http://localhost:${PORT}`);
 });
