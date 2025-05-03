@@ -52,3 +52,5 @@ Edit
 git clone 
 cd project
 npm run dev
+
+Add model names in the .env using the templete provided (This step is not necessary as base models are already added in the project).
