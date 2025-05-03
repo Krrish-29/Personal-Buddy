@@ -19,7 +19,7 @@ LLM: Ollama running models like qwen2.5-coder:7b-instruct
 Embedding Model: via HuggingFace
 
 1. 📁 Clone the Repository<br>
-bash: git clone https://github.com/Krrish-29/Exam-Buddy.git
+bash: git clone https://github.com/Krrish-29/Personal-Buddy.git
 
 2. 📦 Install Node.js<br>
 Download and install Node.js from https://nodejs.org/
@@ -32,7 +32,7 @@ Download Ollama from https://ollama.com/download
 
 5. ⚙️ Set Up Environment Variables<br>
 Create a .env file from the template:
-bash :cd Exam-Buddy
+bash :cd Personal-Buddy
       cp .env.template .env
 
 6. 🔄 Start the Servers<br>
