@@ -2,9 +2,11 @@ import express from 'express';
 import fetch from 'node-fetch';
 import cors from 'cors';
 import { spawn } from "child_process";
+import dotenv from 'dotenv';
+dotenv.config();
+const QUERY_MODEL = process.env.QUERY_MODEL || "qwen2.5-coder:7b-instruct";
 
-const ollama = spawn("ollama", ["run", "qwen2.5-coder:7b-instruct"]);
-
+const ollama = spawn("ollama", ["run", QUERY_MODEL]);
 // ollama.stdout.on("data", (data) => {
 //   console.log(`[Ollama STDOUT]: ${data}`);
 // });
@@ -16,19 +18,19 @@ const ollama = spawn("ollama", ["run", "qwen2.5-coder:7b-instruct"]);
 // ollama.on("close", (code) => {
 //   console.log(`Ollama process exited with code ${code}`);
 // });
-const uvicornProcess = spawn("uvicorn", ["main:app", "--reload", "--port", "5000"]);
+const uvicornProcess = spawn("uvicorn", ["main:app", "--reload", "--port", "5000"],{cwd:'public/backend/'});
 
-uvicornProcess.stdout.on("data", (data) => {
-  console.log(`[Uvicorn STDOUT]: ${data}`);
-});
+// uvicornProcess.stdout.on("data", (data) => {
+//   console.log(`[Uvicorn STDOUT]: ${data}`);
+// });
 
-uvicornProcess.stderr.on("data", (data) => {
-  console.error(`[Uvicorn STDERR]: ${data}`);
-});
+// uvicornProcess.stderr.on("data", (data) => {
+//   console.error(`[Uvicorn STDERR]: ${data}`);
+// });
 
-uvicornProcess.on("close", (code) => {
-  console.log(`Uvicorn process exited with code ${code}`);
-});
+// uvicornProcess.on("close", (code) => {
+//   console.log(`Uvicorn process exited with code ${code}`);
+// });
 
 const app = express();
 
@@ -48,7 +50,7 @@ app.post('/process', async (req, res) => {
   
 // Ask Python backend for best context
   let contextData = '';
-  console.log("Sending query to FastAPI:", userInput);
+  // console.log("Sending query to FastAPI:", userInput);
   try {
     const form = new URLSearchParams();
     form.append('question', userInput);
@@ -62,8 +64,6 @@ app.post('/process', async (req, res) => {
   } catch (err) {
     console.error("Failed to fetch context from vector DB:", err);
   }
-
-
 
   // Send context + user input to Ollama
   try {
@@ -96,11 +96,8 @@ app.post('/process', async (req, res) => {
       }
     }
     function formatResponse(text) {
-      return text
-        .replace(/\n{2,}/g, "\n\n")         // collapse excessive line breaks
-        .replace(/([^\n])\n([^\n])/g, "$1 $2") // fix broken lines within paragraphs
-        .replace(/\s{2,}/g, " ")            // collapse multiple spaces
-        .trim();
+      let normalized = text.replace(/\r\n/g, "\n");
+      return normalized;
     }
     res.json({ response: formatResponse(fullResponse) });
 
@@ -112,7 +109,7 @@ app.post('/process', async (req, res) => {
 
 const PORT = 5500;
 
-console.log("⏳ Waiting for Python backend to start...");
+console.log("⏳ Waiting for backend to start...");
 
 setTimeout(() => {
   app.listen(PORT, () => {

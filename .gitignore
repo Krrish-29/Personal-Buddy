@@ -2,3 +2,5 @@ node_modules
 __pycache__
 uploaded_docs
 vector_db
+file_hashes.json
+.env

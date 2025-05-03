@@ -72,7 +72,10 @@ function uploadFile(file) {
 
 function handleSubmit() {
   const userInput = input.value.trim();
-  if (!userInput) return;
+  if (!userInput) {
+    submitBtn.disabled = false;
+    return;
+  }
 
   const userMessage = document.createElement("div");
   userMessage.className = "user-message message";
@@ -92,7 +95,7 @@ function handleSubmit() {
   .then(data => {
     const botMessage = document.createElement("div");
     botMessage.className = "bot-message message";
-    botMessage.innerHTML = `<strong>IPU AI:</strong> ${data?.response || 'No response from server.'}`;
+    botMessage.innerHTML = `<strong>AI:</strong> ${data?.response || 'No response from server.'}`;
     chatBox.appendChild(botMessage);
     scrollToBottom();
   })
@@ -102,6 +105,9 @@ function handleSubmit() {
     errorMessage.innerHTML = `<strong>AI:</strong> Error communicating with server.`;
     chatBox.appendChild(errorMessage);
     scrollToBottom();
+  })
+  .finally(() => {
+    submitBtn.disabled = false;
   });
 }
 
@@ -111,5 +117,11 @@ input.addEventListener("keypress", (e) => {
 });
 
 function toggleTheme() {
-  document.body.classList.toggle("dark-mode");
+  const isDark = document.body.classList.toggle("dark-mode");
+  localStorage.setItem("theme", isDark ? "dark" : "light");
+}
+
+// On load
+if (localStorage.getItem("theme") === "dark") {
+  document.body.classList.add("dark-mode");
 }

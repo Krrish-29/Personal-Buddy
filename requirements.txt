@@ -8,3 +8,5 @@ PyMuPDF
 python-multipart
 huggingface-hub
 faiss-cpu
+pytesseract 
+pillow
