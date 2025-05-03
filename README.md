@@ -8,7 +8,7 @@ Converts documents into a local vector database using FAISS.
 Sends user queries to a local LLM (Ollama) along with the best-matching context from the uploaded documents.
 
 🔧 Tech Stack
-Frontend: HTML/CSS/JS (Vanilla)
+Frontend: HTML/CSS/JS 
 
 Node.js Backend: Handles chatting with Ollama and manages query flow.
 
@@ -18,22 +18,31 @@ LLM: Ollama running models like qwen2.5-coder:7b-instruct
 
 Embedding Model: via HuggingFace
 
-1. Install Node.js
-Download and install Node.js from the official website:👉 https://nodejs.org
-Then install the required Node.js packages: 
-bash : npm install
-2. Install Python 3.10+
-Ensure Python 3.10 or higher is installed. You can check your version with:
-bash : python --version
-Then, install the Python dependencies:
-bash : pip install -r requirements.txt
-3. Install Ollama
-Download and install Ollama from the official website:
-👉 https://ollama.com/download
+1. 📁 Clone the Repository
+bash: git clone https://github.com/Krrish-29/Exam-Buddy.git
 
-4. Clone the Repository and Start the App
-bash : git clone https://github.com/Krrish-29/Exam-Buddy.git
-bash : cd Exam-Buddy/public/backend
-bash : npm run dev
+2. 📦 Install Node.js
+Download and install Node.js from https://nodejs.org/
+
+3. 🐍 Install Python 3.10+
+Make sure Python 3.10 or newer is installed
+
+4. 🧠 Install Ollama
+Download Ollama from https://ollama.com/download
+
+5. ⚙️ Set Up Environment Variables
+Create a .env file from the template:
+bash :cd Exam-Buddy
+      cp .env.template .env
+
+6. 🔄 Start the Servers
+bash : 
+npm install 
+
+pip install -r requirements.txt
+
+cd public/backend
+
+npm run dev
 
 Add model names in the .env using the templete provided (This step is not necessary as base models are already added in the project).
