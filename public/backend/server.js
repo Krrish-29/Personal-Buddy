@@ -66,18 +66,29 @@ app.post('/process', async (req, res) => {
   }
 
   // Send context + user input to Ollama
-  try {
-    const ollamaRes = await fetch('http://127.0.0.1:11434/api/chat', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'qwen2.5-coder:7b-instruct',
-        messages: [
-          { role: 'system', content: `Use this context for answering the user query: ${contextData}` },
-          { role: 'user', content: userInput }
-        ]
-      })
-    });
+try {
+  const ollamaRes = await fetch('http://127.0.0.1:11434/api/chat', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      model: 'qwen2.5-coder:7b-instruct',
+      messages: [
+        { 
+          role: 'system', 
+          content: `You are {{LLM_NAME}}, an advanced AI language model developed by {{CREATOR_NAME}}.
+Your purpose is to provide accurate, clear, and helpful answers to user questions using the context provided.
+Always prioritize relevance to the question, and ensure the response is well-organized, direct, and easy to understand.
+
+Use the following context to inform your answer:
+${contextData}
+
+If the context is insufficient, respond gracefully and indicate that more information may be needed.`
+        },
+        { role: 'user', content: userInput }
+      ]
+    })
+  });
+
 
     const rawResponse = await ollamaRes.text();
     // console.log('Raw Response from Ollama:', rawResponse);
