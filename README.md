@@ -16,10 +16,39 @@ Python Backend (FastAPI): Processes uploaded files and creates a vector database
 
 LLM: Ollama running models like qwen2.5-coder:7b-instruct
 
-Embedding Model: all-MiniLM-L6-v2 via HuggingFace
+Embedding Model: via HuggingFace
 
-1. Install Node.js from https://nodejs.org
-bash : npm install 
-2. Install Python 3.10+ 
-bash : pip install -r requirements.txt
-3. Install Ollama from https://ollama.com/download
+1. Install Node.js
+Download and install Node.js from the official website:
+👉 https://nodejs.org
+
+Then install the required Node.js packages:
+
+bash
+Copy
+Edit
+npm install
+2. Install Python 3.10+
+Ensure Python 3.10 or higher is installed. You can check your version with:
+
+bash
+Copy
+Edit
+python --version
+Then, install the Python dependencies:
+
+bash
+Copy
+Edit
+pip install -r requirements.txt
+3. Install Ollama
+Download and install Ollama from the official website:
+👉 https://ollama.com/download
+
+4. Clone the Repository and Start the App
+bash
+Copy
+Edit
+git clone 
+cd project
+npm run dev
