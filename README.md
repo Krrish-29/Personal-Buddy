@@ -19,38 +19,21 @@ LLM: Ollama running models like qwen2.5-coder:7b-instruct
 Embedding Model: via HuggingFace
 
 1. Install Node.js
-Download and install Node.js from the official website:
-👉 https://nodejs.org
-
-Then install the required Node.js packages:
-
-bash
-Copy
-Edit
-npm install
+Download and install Node.js from the official website:👉 https://nodejs.org
+Then install the required Node.js packages: 
+bash : npm install
 2. Install Python 3.10+
 Ensure Python 3.10 or higher is installed. You can check your version with:
-
-bash
-Copy
-Edit
-python --version
+bash : python --version
 Then, install the Python dependencies:
-
-bash
-Copy
-Edit
-pip install -r requirements.txt
+bash : pip install -r requirements.txt
 3. Install Ollama
 Download and install Ollama from the official website:
 👉 https://ollama.com/download
 
 4. Clone the Repository and Start the App
-bash
-Copy
-Edit
-git clone 
-cd project
-npm run dev
+bash : git clone https://github.com/Krrish-29/Exam-Buddy.git
+bash : cd Exam-Buddy/public/backend
+bash : npm run dev
 
 Add model names in the .env using the templete provided (This step is not necessary as base models are already added in the project).

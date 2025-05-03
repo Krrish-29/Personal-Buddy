@@ -2,7 +2,7 @@ const input = document.getElementById("queryInput");
 const chatBox = document.getElementById("chatBox");
 const submitBtn = document.getElementById("submitBtn");
 const mainScroll = document.getElementById("mainScroll");
-
+const isDark = document.body.classList.toggle("dark-mode");
 function scrollToBottom() {
   mainScroll.scrollTop = mainScroll.scrollHeight;
 }
@@ -118,10 +118,5 @@ input.addEventListener("keypress", (e) => {
 
 function toggleTheme() {
   const isDark = document.body.classList.toggle("dark-mode");
-  localStorage.setItem("theme", isDark ? "dark" : "light");
 }
 
-// On load
-if (localStorage.getItem("theme") === "dark") {
-  document.body.classList.add("dark-mode");
-}
