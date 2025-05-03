@@ -21,21 +21,21 @@ Embedding Model: via HuggingFace
 1. 📁 Clone the Repository<br>
 bash: git clone https://github.com/Krrish-29/Exam-Buddy.git
 
-2. 📦 Install Node.js
+2. 📦 Install Node.js<br>
 Download and install Node.js from https://nodejs.org/
 
-3. 🐍 Install Python 3.10+
+3. 🐍 Install Python 3.10+<br>
 Make sure Python 3.10 or newer is installed
 
-4. 🧠 Install Ollama
+4. 🧠 Install Ollama<br>
 Download Ollama from https://ollama.com/download
 
-5. ⚙️ Set Up Environment Variables
+5. ⚙️ Set Up Environment Variables<br>
 Create a .env file from the template:
 bash :cd Exam-Buddy
       cp .env.template .env
 
-6. 🔄 Start the Servers
+6. 🔄 Start the Servers<br>
 bash : 
 npm install 
 
