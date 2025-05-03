@@ -18,7 +18,7 @@ LLM: Ollama running models like qwen2.5-coder:7b-instruct
 
 Embedding Model: via HuggingFace
 
-1. 📁 Clone the Repository
+1. 📁 Clone the Repository<br>
 bash: git clone https://github.com/Krrish-29/Exam-Buddy.git
 
 2. 📦 Install Node.js
