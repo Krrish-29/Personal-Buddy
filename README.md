@@ -37,12 +37,12 @@ bash :cd Exam-Buddy
 
 6. 🔄 Start the Servers<br>
 bash : 
-npm install 
+      npm install 
 
-pip install -r requirements.txt
+      pip install -r requirements.txt
 
-cd public/backend
+      cd public/backend
 
-npm run dev
+      npm run dev
 
 Add model names in the .env using the templete provided (This step is not necessary as base models are already added in the project).
