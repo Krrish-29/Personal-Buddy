@@ -1,1 +1,4 @@
 node_modules
+__pycache__
+uploaded_docs
+vector_db
