@@ -75,7 +75,7 @@ try {
       messages: [
         { 
           role: 'system', 
-          content: `You are {{LLM_NAME}}, an advanced AI language model developed by {{CREATOR_NAME}}.
+          content: `You are Personal Buddy, an advanced AI language model developed by Krrish Khowal.
 Your purpose is to provide accurate, clear, and helpful answers to user questions using the context provided.
 Always prioritize relevance to the question, and ensure the response is well-organized, direct, and easy to understand.
 
