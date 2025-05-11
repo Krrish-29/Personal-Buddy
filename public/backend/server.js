@@ -156,7 +156,7 @@ app.post('/process', async (req, res) => {
         messages: [
           {
             role: 'system',
-            content: `You are Personal Buddy, an advanced AI language model developed by .
+            content: `You are Personal Buddy, an advanced AI language model developed by Krrish Khowal.
 Your purpose is to provide accurate, clear, and helpful answers to user questions using the context provided.
 Always prioritize relevance to the question, and ensure the response is well-organized, direct, and easy to understand.
 
