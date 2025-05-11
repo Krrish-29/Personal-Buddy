@@ -84,7 +84,8 @@ async def upload(file: UploadFile = File(...)):
 
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
     chunks = text_splitter.split_documents(documents)
-
+    if "bge" in EMBEDDING_MODEL.lower():
+        chunks = [Document(page_content="Represent this sentence for retrieval: " + d.page_content) for d in chunks]
     vectorstore = FAISS.from_documents(chunks, embeddings)
     vectorstore.save_local(DB_DIR)
 
@@ -104,6 +105,8 @@ async def query_llm(question: str = Form(...)):
     
     try:
         vectorstore = FAISS.load_local(DB_DIR, embeddings, allow_dangerous_deserialization=True)
+        if "bge" in EMBEDDING_MODEL.lower():
+            question = "Represent this sentence for retrieval: " + question
         docs = vectorstore.similarity_search(question, k=3)
         context = "\n\n".join([d.page_content for d in docs])
         return {"context": context}
