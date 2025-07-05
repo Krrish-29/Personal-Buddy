@@ -10,3 +10,4 @@ unstructured
 python-docx
 python-pptx
 python-dotenv
+sentence-transformers

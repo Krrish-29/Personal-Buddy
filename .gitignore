@@ -4,3 +4,5 @@ uploaded_docs
 vector_db
 file_hashes.json
 .env
+.venv
+package-lock.json

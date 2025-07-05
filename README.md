@@ -30,12 +30,21 @@ Make sure Python 3.10 or newer is installed
 4. 🧠 Install Ollama<br>
 Download Ollama from https://ollama.com/download
 
-5. ⚙️ Set Up Environment Variables<br>
+5. ⚙️ Set Up Environment Variables ( Optional )<br>
 Create a .env file from the template:
 bash :cd Personal-Buddy
       cp .env.template .env
 
-6. 🔄 Start the Servers<br>
+6. Setup Python Virtual Environment<br>
+      Windows:
+      bash: python -m venv .venv
+            source .venv/bin/activate
+
+      MacOS/Linux:
+      bash: python3 -m venv .venv
+            source .venv/bin/activate
+
+7. 🔄 Start the Servers<br>
 bash : 
       npm install 
 

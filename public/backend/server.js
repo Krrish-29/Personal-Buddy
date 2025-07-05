@@ -8,52 +8,50 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const execAsync = util.promisify(exec);
-const QUERY_MODEL = process.env.QUERY_MODEL || "qwen3:latest";
+const QUERY_MODEL =  "gemma3:4b";
 const PORT = 5500;    
 const BACKEND_PORT = 5000;
 const OLLAMA_PORT = 11434;
 
-async function killOllamaProcesses() {
-  if (os.platform() === "win32") {
-    try {
-      const { stdout: processStdout } = await execAsync(`Get-Process | Where-Object { $_.ProcessName -like "*ollama*" }`);
-      const ollamaPids = processStdout
-        .split('\n')
-        .map(line => line.trim())
-        .filter(line => /^\d+$/.test(line));
+// async function killOllamaProcesses() {
+//   if (os.platform() === "win32") {
+//     try {
+//       const { stdout: processStdout } = await execAsync(`Get-Process | Where-Object { $_.ProcessName -like "*ollama*" }`);
+//       const ollamaPids = processStdout
+//         .split('\n')
+//         .map(line => line.trim())
+//         .filter(line => /^\d+$/.test(line));
+//       const { stdout: portStdout } = await execAsync(`Get-NetTCPConnection -LocalPort 11434 | Select-Object OwningProcess`);
+//       const portPids = portStdout
+//         .split('\n')
+//         .map(line => line.trim().split(/\s+/).pop())
+//         .filter(pid => pid && /^\d+$/.test(pid));
+//       const allPids = [...new Set([...ollamaPids, ...portPids])];
+//       for (const pid of allPids) {
+//         try {
+//           await execAsync(`taskkill /F /PID ${pid}`);
+//           // console.log(`Killed process ${pid}`);
+//         } catch (err) {
+//           // console.warn(`Failed to kill PID ${pid}: ${err.message}`);
+//         }
+//       }
+//     } catch (err) {
+//       // console.error("Error finding or killing Ollama processes:", err.message);
+//     }
+//   } 
+  // else {
+  //   try {
+  //     await execAsync(`lsof -ti:${OLLAMA_PORT} | xargs kill -9`);
+  //     // console.log("Killed processes using port 11434 (Unix).\n");
+  //   } catch (err) {
+  //     if (!err.message.includes("No such file or directory")) {
+  //       // console.warn("Failed to kill processes on port 11434:", err.message);
+  //     }
+  //   }
+  // }
 
-      const { stdout: portStdout } = await execAsync(`Get-NetTCPConnection -LocalPort 11434 | Select-Object OwningProcess`);
-      const portPids = portStdout
-        .split('\n')
-        .map(line => line.trim().split(/\s+/).pop())
-        .filter(pid => pid && /^\d+$/.test(pid));
-
-      const allPids = [...new Set([...ollamaPids, ...portPids])];
-
-      for (const pid of allPids) {
-        try {
-          await execAsync(`taskkill /F /PID ${pid}`);
-          // console.log(`Killed process ${pid}`);
-        } catch (err) {
-          // console.warn(`Failed to kill PID ${pid}: ${err.message}`);
-        }
-      }
-    } catch (err) {
-      // console.error("Error finding or killing Ollama processes:", err.message);
-    }
-  } else {
-    try {
-      await execAsync(`lsof -ti:${OLLAMA_PORT} | xargs kill -9`);
-      // console.log("Killed processes using port 11434 (Unix).\n");
-    } catch (err) {
-      if (!err.message.includes("No such file or directory")) {
-        // console.warn("Failed to kill processes on port 11434:", err.message);
-      }
-    }
-  }
-
-  await new Promise(resolve => setTimeout(resolve, 2000));
-}
+//   await new Promise(resolve => setTimeout(resolve, 2000));
+// }
 
 async function startOllama() {
   const ollama = spawn("ollama", ["serve"], { shell: true });
@@ -80,7 +78,8 @@ async function startOllama() {
                 else reject(`Failed to pull model: ${QUERY_MODEL}`);
               });
             });
-          } else {
+          } 
+          else {
             // console.log(`✅ Model already available: ${QUERY_MODEL}`);
           }
           return;
@@ -115,7 +114,7 @@ async function startUvicorn() {
 }
 
 async function startServices() {
-  await killOllamaProcesses();
+  // await killOllamaProcesses();
   await startOllama(); 
   await startUvicorn(); 
 }
@@ -204,4 +203,4 @@ setTimeout(() => {
   app.listen(PORT, () => {
     console.log(`✅ Server running at http://localhost:${PORT}`);
   });
-}, 25000);
+}, 35000);
