@@ -38,7 +38,7 @@ bash :cd Personal-Buddy
 6. Setup Python Virtual Environment<br>
       Windows:
       bash: python -m venv .venv
-            source .venv/bin/activate
+            .venv/Scripts/activate
 
       MacOS/Linux:
       bash: python3 -m venv .venv
